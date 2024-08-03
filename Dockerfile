@@ -7,4 +7,9 @@ RUN apk update && \
     jq \
     curl
 
-USER 1001
+RUN addgroup -S appgroup && \
+    adduser -S appuser -G appgroup
+
+RUN chown appuser:appgroup /usr/sbin/vault
+
+USER appuser
